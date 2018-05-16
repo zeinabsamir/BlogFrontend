@@ -1,6 +1,7 @@
 
 <app-articles *ngFor="let article of articles" 
-               [article]="article">
+               [article]="article"
+               (deletedArticleId)="deleteArticle($event)">
 </app-articles>
 
 <div *ngIf="!articles.length"> No Article</div>

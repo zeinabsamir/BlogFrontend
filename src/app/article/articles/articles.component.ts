@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, } from '@angular/core';
+import { Component, OnInit, Input, Output,  EventEmitter } from '@angular/core';
 import { Article } from '../../shared/model/article.model';
+
 
 @Component({
   selector: 'app-articles',
@@ -9,6 +10,7 @@ import { Article } from '../../shared/model/article.model';
 export class ArticlesComponent implements OnInit {
 
   @Input() article: Article;
+  @Output() deletedArticleId: EventEmitter<number> = new EventEmitter();
   constructor() { }
 
   ngOnInit() {

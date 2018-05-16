@@ -3,6 +3,7 @@
   <div class="card-body">
     <h5 class="card-title">{{article.title}}</h5>
     <p class="card-text" style="height: 10rem; overflow:hidden;">{{article.description}}</p>
-    <a [routerLink]="'/articles/' + article.id" class="card-link">Read More</a>
+    <a [routerLink]="'/articles/' + article.id" class="card-link">Read More</a><br><br>
+    <a (click)="deletedArticleId.emit(article.id)" class="btn btn-primary">Delete</a>
   </div>
 </div>

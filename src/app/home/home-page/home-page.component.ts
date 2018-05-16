@@ -20,4 +20,9 @@ export class HomePageComponent implements OnInit {
   getArticles() {
     this.articleService.getArticles().subscribe(articleData => this.articles = articleData);
   }
+  deleteArticle(articleId: number) {
+    this.articleService.deleteArticle(articleId).subscribe(articles => {
+      this.articles = articles;
+    });
+  }
 }
