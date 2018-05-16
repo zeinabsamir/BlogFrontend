@@ -19,5 +19,10 @@ export class ArticleService {
     return this.http.post(`${this.apiUrl}/articles`, postBody)
     .map((res: Response) => res.json());
   }
+  getArticletById(articleId: number) {
+    return this.http.get(`${this.apiUrl}/articles/${articleId}`)
+    .map((res: Response) => res.json());
+
+  }
 
 }
