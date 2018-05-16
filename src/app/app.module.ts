@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeModule } from './home/home.module';
 import { MainModule } from './main/main.module';
+import { ArticleModule } from './article/article.module';
 import { rootRouting } from './app.router';
 
 import { HttpModule } from '@angular/http';
@@ -21,6 +22,7 @@ import { HttpModule } from '@angular/http';
     rootRouting,
     HomeModule,
     MainModule,
+    ArticleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
