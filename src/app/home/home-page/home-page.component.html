@@ -1,9 +1,15 @@
 
+  <div class="container">
+    <div class="jumbotron">
+      <h1 id="blog">Blog</h1>      
+      <h3>Please share with us some informations or facts by writing an article</h3>
+    </div>     
+  </div>
 <app-articles *ngFor="let article of articles" 
                [article]="article"
                (deletedArticleId)="deleteArticle($event)">
 </app-articles>
 
-<div *ngIf="!articles.length"> No Article</div>
+<div *ngIf="!articles.length" id="nothing"> <h1> No Article</h1></div>
 <br>
 

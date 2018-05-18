@@ -28,5 +28,9 @@ export class ArticleService {
     return this.http.delete(`${this.apiUrl}/articles/${articleId}`)
     .map((res: Response) => res.json());
   }
+  updateArticleById (article: Article) {
+    return this.http.put(`${this.apiUrl}/articles/${article.id}`, article)
+    .map((res: Response) => res.json());
+  }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Article } from '../../shared/model/article.model';
 import { ArticleService } from '../../core/article.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-article-add-edit',
@@ -9,20 +9,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./article-add-edit.component.css']
 })
 export class ArticleAddEditComponent implements OnInit {
-article = {
-  title: '',
-  description: ''
-};
+article: Article = <any>{};
 
   constructor(private articleService: ArticleService,
-              private router: Router) { }
+              private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.initArticle();
   }
 
-  onPostSubmit() {
+  onArticleCreate() {
     this.articleService.createArticle(this.article).subscribe(res => {
       this.router.navigateByUrl('/');
+    });
+  }
+
+  onArticleEdit() {
+    this.articleService.updateArticleById(this.article).subscribe(res => {
+      this.router.navigateByUrl('/');
+    });
+  }
+  initArticle() {
+    this.route.params.subscribe(params => {
+      const articletId = params.articleId;
+
+      if (articletId) {
+        this.articleService.getArticletById(articletId).subscribe(article => this.article = article);
+      }
     });
   }
 }

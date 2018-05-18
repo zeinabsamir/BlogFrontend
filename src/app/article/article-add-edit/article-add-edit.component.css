@@ -2,3 +2,6 @@
     width: 1000px;
    
 }
+.ng-invalid:not(form):not(.ng-untouched) {
+    border: 1px solid #f00;
+}

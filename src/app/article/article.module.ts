@@ -6,6 +6,7 @@ import { ArticleService } from '../core/article.service';
 import { ArticleAddEditComponent } from './article-add-edit/article-add-edit.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { ArticlesPageComponent } from './articles-page/articles-page.component';
 
 @NgModule({
   imports: [
@@ -18,6 +19,6 @@ import { RouterModule } from '@angular/router';
     ArticleBodyComponent
   ],
   providers: [ ArticleService],
-  declarations: [ArticlesComponent, ArticleBodyComponent, ArticleAddEditComponent]
+  declarations: [ArticlesComponent, ArticleBodyComponent, ArticleAddEditComponent, ArticlesPageComponent]
 })
 export class ArticleModule { }

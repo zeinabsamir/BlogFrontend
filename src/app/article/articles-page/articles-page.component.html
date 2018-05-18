@@ -1,0 +1,14 @@
+<p>
+  articles-page works!
+</p>
+<div *ngFor="let article of articles" id="card" >
+<div *ngIf="articles && articles.length" class="card" style="width: 20rem;">
+  <div class="card-body" >
+    <h5 class="card-title">{{article.title}}</h5>
+    <p class="card-text"> {{article.description}}.</p>
+    <a [routerLink]="'/article/' + article.id" class="card-link">Read More</a><br><br>
+    <a (click)="deleteArticle(article.id)" class="btn btn-primary">Delete</a>
+  </div>
+</div>
+</div>
+<div *ngIf="!articles.length" id="nothing"> <h1> No Article</h1></div>

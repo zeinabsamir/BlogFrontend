@@ -1,14 +1,15 @@
 
 <div class="d-flex justify-content-center align-items-center container ">
-<form>
+<form #postAddform="ngForm">
   <div class="form-group ">
     <label for="articleTitle"> <h2>Article Subject</h2></label>
-    <input type="text" class="form-control" id="articleTitle" placeholder="Enter Subject Name"  name="title" [(ngModel)]="article.title">
+    <input type="text" class="form-control" id="articleTitle" placeholder="Enter Subject Name"  name="title" [(ngModel)]="article.title" required>
   </div>
   <div class="form-group">
     <label for="description"><h2>Description</h2></label>
-    <textarea class="form-control" id="description" placeholder="Write a description" name="description" [(ngModel)]="article.description"></textarea>
+    <textarea class="form-control" id="description" placeholder="Write a description" name="description" [(ngModel)]="article.description" required></textarea>
   </div>
-  <button type="submit" (click)="onPostSubmit()" class="btn btn-primary">Submit</button>
+  <button *ngIf="!article.id" type="submit" (click)="onArticleCreate()" class="btn btn-primary" [disabled]="postAddform.invalid">Create</button>
+  <button *ngIf="article.id" type="submit" (click)="onArticleEdit()" class="btn btn-primary" [disabled]="postAddform.invalid">Edit</button>
 </form>
 </div>
