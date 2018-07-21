@@ -19,6 +19,7 @@ export class ArticleBodyComponent implements OnInit {
       const articleId = params.articleId;
       this.articleService.getArticletById(Number(articleId)).subscribe((data) => {
         this.article = data;
+        console.log(data);
 
       });
     });
