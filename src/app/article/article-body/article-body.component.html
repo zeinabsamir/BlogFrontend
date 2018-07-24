@@ -1,8 +1,14 @@
 
-<div *ngIf="article" class="card" style="width: 20rem;">
+<div *ngIf="article" class="card">
   <div class="card-body">
     <h5 class="card-title">{{article.title}}</h5>
     <p class="card-text"> {{article.description}}.</p>
+    <p id="comments">Add a comment...</p>
+    <app-comments-body  *ngFor="let comment of comments" 
+                         [comment]="comment.content"
+                         (createdComment)="createComment($event)"
+    ></app-comments-body>
+    <br><br>
     <a [routerLink]="'/articles/'+ article.id  +'/edit'" class="btn btn-primary">Edit</a>
   </div>
 </div>
