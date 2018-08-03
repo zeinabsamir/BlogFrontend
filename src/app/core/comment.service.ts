@@ -10,8 +10,13 @@ export class CommentService {
 
   constructor(private http: Http) { }
 
-  createComment(articleId: number, comment: string) {
-    return this.http.post(`${this.apiUrl}/articles/${articleId}/comments`, comment)
+  createComment(articleId: number, postBody: {content: String}) {
+    return this.http.post(`${this.apiUrl}/articles/${articleId}/comments`, postBody)
+    .map((res: Response) => res.json());
+  }
+
+  deleteComment(articleId: number, commentId: number) {
+    return this.http.delete(`${this.apiUrl}/articles/${articleId}/comments/${commentId}`)
     .map((res: Response) => res.json());
   }
 

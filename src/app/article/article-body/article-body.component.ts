@@ -14,26 +14,45 @@ export class ArticleBodyComponent implements OnInit {
 
  article: Article;
  comments = [];
+ comment = <any>{};
   constructor(private route: ActivatedRoute, private articleService: ArticleService, private commentService: CommentService) { }
 
   ngOnInit() {
+  this.initArticle();
+  }
+  onCommentCreate() {
     this.route.params.subscribe(params => {
       const articleId = params.articleId;
-      this.articleService.getArticletById(Number(articleId)).subscribe((data) => {
-        this.article = data.article;
-        this.comments = data.comments;
+      this.commentService.createComment(Number(articleId), this.comment).subscribe((data) => {
         console.log(data);
+        this.comment.content = '';
+        this.initArticle();
 
       });
     });
   }
-  createComment(comment: string) {
+  initArticle() {
     this.route.params.subscribe(params => {
-      const articleId = params.articleId;
-      this.commentService.createComment(Number(articleId), comment).subscribe((data) => {
-        console.log(data);
+      const articletId = params.articleId;
+        this.articleService.getArticletById(articletId).subscribe((data) => {
+          this.article = data.article;
+          this.comments = data.comments;
+          console.log(data);
+        });
 
-      });
     });
+
+    }
+
+    onDeleteComment(commentId: number) {
+      this.route.params.subscribe(params => {
+        const articletId = params.articleId;
+        this.commentService.deleteComment(articletId, commentId).subscribe(comments => {
+          console.log('inside' + comments);
+          this.comments = comments;
+
+        });
+      });
+    }
   }
-}
+

@@ -4,10 +4,25 @@
     <h5 class="card-title">{{article.title}}</h5>
     <p class="card-text"> {{article.description}}.</p>
     <p id="comments">Add a comment...</p>
-    <app-comments-body  *ngFor="let comment of comments" 
-                         [comment]="comment.content"
-                         (createdComment)="createComment($event)"
-    ></app-comments-body>
+    <div *ngIf="!comments.length"> <h6> No comments</h6></div>
+      <div class="detailBox">
+        <div class="actionBox"> 
+          <div id="listedcomments">  
+          <app-comments-body  *ngFor="let comment of comments" 
+                         [comment]="comment"
+                         (deletedCommentId)="onDeleteComment($event)"
+         ></app-comments-body>
+          </div>
+         <form class="form-inline" role="form">
+         <div class="form-group">
+          <input class="form-control" type="text" placeholder="Your comments" name="content" [(ngModel)]="comment.content" />
+         </div>
+         <div class="form-group">
+           <button  type="submit"(click)="onCommentCreate()"class="btn btn-default">Add</button>
+         </div>
+  </form>
+ </div>
+</div>
     <br><br>
     <a [routerLink]="'/articles/'+ article.id  +'/edit'" class="btn btn-primary">Edit</a>
   </div>
