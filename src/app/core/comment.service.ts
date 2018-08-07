@@ -10,8 +10,12 @@ export class CommentService {
 
   constructor(private http: Http) { }
 
-  createComment(articleId: number, postBody: {content: String}) {
-    return this.http.post(`${this.apiUrl}/articles/${articleId}/comments`, postBody)
+  getCommentById(articleId: number, commentId: number) {
+    return this.http.get(`${this.apiUrl}/articles/${articleId}/comments/${commentId}`)
+    .map((res: Response) => res.json());
+  }
+  createComment(articleId: number, commentBody: {content: String}) {
+    return this.http.post(`${this.apiUrl}/articles/${articleId}/comments`, commentBody)
     .map((res: Response) => res.json());
   }
 
@@ -20,4 +24,8 @@ export class CommentService {
     .map((res: Response) => res.json());
   }
 
+  updateCommentById (articleId: number, commentBody) {
+    return this.http.put(`${this.apiUrl}/articles/${articleId}/comments/${commentBody.id}`, commentBody)
+    .map((res: Response) => res.json());
+  }
 }

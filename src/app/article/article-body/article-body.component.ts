@@ -47,10 +47,11 @@ export class ArticleBodyComponent implements OnInit {
     onDeleteComment(commentId: number) {
       this.route.params.subscribe(params => {
         const articletId = params.articleId;
-        this.commentService.deleteComment(articletId, commentId).subscribe(comments => {
-          console.log('inside' + comments);
-          this.comments = comments;
 
+        this.commentService.deleteComment(articletId, commentId).subscribe((res) => {
+          const commentToDelete      = this.comments.find(e => e.id === commentId);
+          const commentToDeleteIndex = this.comments.indexOf(commentToDelete);
+          this.comments.splice(commentToDeleteIndex, 1);
         });
       });
     }

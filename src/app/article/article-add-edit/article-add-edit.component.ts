@@ -34,7 +34,8 @@ article: Article = <any>{};
       const articletId = params.articleId;
 
       if (articletId) {
-        this.articleService.getArticletById(articletId).subscribe(article => this.article = article);
+        this.articleService.getArticletById(articletId).subscribe(data =>
+          this.article = data.article);
       }
     });
   }
